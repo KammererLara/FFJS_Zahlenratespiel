@@ -1,0 +1,17 @@
+/* CSS files add styling rules to your content */
+
+body {
+    font-family: helvetica, arial, sans-serif;
+    margin: 2em;
+}
+
+#form {
+    border: 2px solid darkorange;
+    background: orange;
+    padding: .5em;
+}
+
+.output {
+    border: 2px solid green;
+    padding: .5em;
+}
