@@ -7,6 +7,7 @@ Ausgabe mit alert(), Eingabe mit prompt() - wie alert aber mit Eingabe als retur
 */
 
 let randomNumber = Math.floor(Math.random()*100)+1;
+let attempts = 0;
 // let chosenNumber = -1;
 // let chosenNumberText, insertion = "";
 //
@@ -46,6 +47,8 @@ $("#form").on("submit", (e) => {
         changeOutputText(`You've won! The number is ${randomNumber}!`);
     else
         changeOutputText(`Your guess is ${chosenNumber > randomNumber ? "higher" : "lower"} than the actual number.`);
+
+    $(".attempts").html(`Versuche : ${++attempts}`);
 });
 
 $("#again").on("click", (e) => location.reload())
