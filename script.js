@@ -6,50 +6,50 @@ Ausgabe mit alert(), Eingabe mit prompt() - wie alert aber mit Eingabe als retur
 
 */
 
-// let randomNumber = Math.floor(Math.random()*101);
+let randomNumber = Math.floor(Math.random()*100)+1;
+// let chosenNumber = -1;
+// let chosenNumberText, insertion = "";
 //
-// let insertion = prompt("Please insert your guess between 1 and 100:")
-// let chosenNumber = parseInt(insertion);
+// do {
+//     insertion = prompt(chosenNumberText + "Please insert a valid number between 1 and 100:");
+//     chosenNumber = parseInt(insertion);
 //
-// while (chosenNumber !== randomNumber) {
-//     if (isNaN(chosenNumber)){
-//         insertion = prompt("Please insert a valid number between 1 and 100:")
-//         if (insertion === null)
-//             break;
-//         chosenNumber = parseInt(insertion);
-//         continue;
-//     }
-//     insertion = prompt(
-//         `Your guess is ${chosenNumber > randomNumber ? "higher" : "lower"} than the actual number.\nPlease insert another one:`);
 //     if (insertion === null)
 //         break;
-//     chosenNumber = parseInt(insertion)
-// }
-// alert(`You've won! The number is ${randomNumber}!`)
-
-
-
-let randomNumber = Math.floor(Math.random()*10)+1;
-let chosenNumber = -1;
-let chosenNumberText, insertion = "";
-
-do {
-    insertion = prompt(chosenNumberText + "Please insert a valid number between 1 and 100:");
-    chosenNumber = parseInt(insertion);
-
-    if (insertion === null)
-        break;
-    if (chosenNumber > 100 || chosenNumber < 1) {
-        chosenNumberText = "The chosen number is not in the given range.\n";
-        continue;
-    }
-    if (isNaN(chosenNumber)){
-        chosenNumberText = "That is not a valid number\n";
-        continue;
-    }
-
-    chosenNumberText = `Your guess is ${chosenNumber > randomNumber ? "higher" : "lower"} than the actual number.\n`;
-} while  (chosenNumber !== randomNumber)
-if (insertion !== null)
-    alert(`You've won! The number is ${randomNumber}!`)
+//     if (chosenNumber > 100 || chosenNumber < 1) {
+//         chosenNumberText = "The chosen number is not in the given range.\n";
+//         continue;
+//     }
+//     if (isNaN(chosenNumber)){
+//         chosenNumberText = "That is not a valid number\n";
+//         continue;
+//     }
+//
+//     chosenNumberText = `Your guess is ${chosenNumber > randomNumber ? "higher" : "lower"} than the actual number.\n`;
+// } while  (chosenNumber !== randomNumber)
+// if (insertion !== null)
+//     alert(`You've won! The number is ${randomNumber}!`)
 // console.log(`End: chosen number: ${chosenNumber}, random number: ${randomNumber}`);
+
+
+$("#form").on("submit", (e) => {
+    e.preventDefault();
+
+    let insertion = $("input").val();
+    let chosenNumber = parseInt(insertion);
+
+    if (chosenNumber > 100 || chosenNumber < 1)
+        changeOutputText("The chosen number is not in the given range.");
+    else if (isNaN(chosenNumber))
+        changeOutputText("That is not a valid number.");
+    else if (chosenNumber === randomNumber)
+        changeOutputText(`You've won! The number is ${randomNumber}!`);
+    else
+        changeOutputText(`Your guess is ${chosenNumber > randomNumber ? "higher" : "lower"} than the actual number.`);
+});
+
+$("#again").on("click", (e) => location.reload())
+
+function changeOutputText (text) {
+    $(".output").html(text);
+}
