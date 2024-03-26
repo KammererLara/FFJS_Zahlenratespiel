@@ -37,9 +37,9 @@ do {
     insertion = prompt(higherLowerText + "Please insert a valid number between 1 and 100:");
     chosenNumber = parseInt(insertion);
 
+    if (insertion === null)
+        break;
     if (isNaN(chosenNumber)){
-        if (insertion === null)
-            break;
         higherLowerText = "That is not a valid number\n";
         continue;
     }
