@@ -29,22 +29,26 @@ Ausgabe mit alert(), Eingabe mit prompt() - wie alert aber mit Eingabe als retur
 
 
 
-let randomNumber = Math.floor(Math.random()*101);
+let randomNumber = Math.floor(Math.random()*10)+1;
 let chosenNumber = -1;
-let higherLowerText, insertion = "";
+let chosenNumberText, insertion = "";
 
 do {
-    insertion = prompt(higherLowerText + "Please insert a valid number between 1 and 100:");
+    insertion = prompt(chosenNumberText + "Please insert a valid number between 1 and 100:");
     chosenNumber = parseInt(insertion);
 
     if (insertion === null)
         break;
+    if (chosenNumber > 100 || chosenNumber < 1) {
+        chosenNumberText = "The chosen number is not in the given range.\n";
+        continue;
+    }
     if (isNaN(chosenNumber)){
-        higherLowerText = "That is not a valid number\n";
+        chosenNumberText = "That is not a valid number\n";
         continue;
     }
 
-    higherLowerText = `Your guess is ${chosenNumber > randomNumber ? "higher" : "lower"} than the actual number.\n`;
+    chosenNumberText = `Your guess is ${chosenNumber > randomNumber ? "higher" : "lower"} than the actual number.\n`;
 } while  (chosenNumber !== randomNumber)
 if (insertion !== null)
     alert(`You've won! The number is ${randomNumber}!`)
